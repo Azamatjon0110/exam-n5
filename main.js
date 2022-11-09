@@ -76,7 +76,6 @@ function shuffle(array) {
         checkingTime ;
       }else{
         stopInterval();
-        endGameFunc();
       }
       timeCount.textContent = allTime;
     };
@@ -112,10 +111,10 @@ function shuffle(array) {
       modal.classList.add("show");
       elForm.classList.remove("d-block");
       elForm.classList.add("d-none");
-      roadSymbols.slice(0,6).forEach(item => signArray.push(item));
+      roadSymbols.slice(0,24).forEach(item => signArray.push(item));
       signArray.forEach(item => randomArrayFind.push(item));
       shuffle(randomArrayFind);
-      renderSigns(roadSymbols.slice(0,6));
+      renderSigns(roadSymbols.slice(0,24));
     }
     if(selectType.value == "medium"){
       modal.classList.add("show");
@@ -136,7 +135,6 @@ function shuffle(array) {
       renderSigns(roadSymbols.slice(0,72));
     }
     timerFunc(selectTime.value);
-
     titleQuestion()
 
   });

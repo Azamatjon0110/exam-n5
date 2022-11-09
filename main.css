@@ -80,7 +80,8 @@ body{
 }
 
 .game-total-win{
-  width: 400px;
+  width: 100%;
+  max-width: 400px;
 }
 
 .checked-true{
@@ -106,7 +107,8 @@ body{
 }
 
 .game-total{
-  width: 300px;
+  width: 100%;
+  max-width: 300px;
 }
 
 .button-reset, .btn-reset{
@@ -122,8 +124,7 @@ body{
   animation: shake 150ms 2 linear;
 }
 
-
-
+/*
 @keyframes shake-animation {
   0% { transform:translate(0,0) }
  1.78571% { transform:translate(5px,0) }
@@ -133,4 +134,4 @@ body{
  8.92857% { transform:translate(5px,0) }
  10.71429% { transform:translate(0,0) }
  100% { transform:translate(0,0) }
-}
+} */
