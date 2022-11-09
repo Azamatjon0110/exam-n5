@@ -76,6 +76,7 @@ function shuffle(array) {
         checkingTime ;
       }else{
         stopInterval();
+        endGameFunc();
       }
       timeCount.textContent = allTime;
     };
