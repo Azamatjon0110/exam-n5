@@ -21,6 +21,7 @@ const winGame = document.querySelector(".win-game");
 const winGameTotal = document.querySelector(".point-count-win");
 const reloadBtn = document.querySelector(".btn-reset");
 
+let myTime = 0;
 let score = 0;
 let attemp = 5;
 
@@ -59,23 +60,26 @@ function shuffle(array) {
     if(randomArrayFind.length > 0 && myTime !=0){
       signTitle.textContent = randomArrayFind[0].symbol_title;
     }
-     if (randomArrayFind.length == 0 && myTime !=0){
+    if (randomArrayFind.length == 0 && myTime !=0){
       winnerr()
       document.querySelector(".win-sound").play();
     }
-    if(myTime == 0){
+    if(myTime == 0 && randomArrayFind.length > 0){
       endGameFunc();
     }
   }
-
-  let myTime = Number(selectTime.value)*60;
-  function timerFunc (){
+  console.log(myTime);
+  function timerFunc (selectTimeValue){
+    myTime = Number(selectTimeValue)*60;
     let checkFun = () => {
       let allTime =
       `${Math.floor(myTime / 60)}`.padStart(2, "0") +
       ":" +
       `${myTime % 60}`.padStart(2, "0");
       --myTime;
+      if(myTime == 0 && randomArrayFind.length > 0){
+        endGameFunc()
+      }
       if(myTime >= 0){
         checkingTime ;
       }else{
@@ -138,9 +142,16 @@ function shuffle(array) {
       shuffle(randomArrayFind);
       renderSigns(roadSymbols.slice(0,72));
     }
-    timerFunc(selectTime.value);
+    if(selectTime.value == "3"){
+      timerFunc(selectTime.value);
+    }
+    if(selectTime.value == "5"){
+      timerFunc(selectTime.value);
+    }
+    if(selectTime.value == "8"){
+      timerFunc(selectTime.value);
+    }
     titleQuestion()
-
   });
 
   const indexs = [];
@@ -179,7 +190,6 @@ function shuffle(array) {
         if(imgId == randomArrayFind[0].id){
           score += 2;
           indexs.push(imgId);
-          console.log(indexs,signArray);
           pointCount.textContent = score;
           winGameTotal.textContent =score;
           checkedSound.play();
