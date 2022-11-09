@@ -14,7 +14,7 @@ const signTitle = document.querySelector(".js-title");
 
 
 const endGame = document.querySelector(".end-game");
-const endGameImg = document.querySelector(".point-count-end");
+const endGamePoint = document.querySelector(".end-game-point");
 const resetBtn = document.querySelector(".button-reset");
 
 const winGame = document.querySelector(".win-game");
@@ -56,16 +56,20 @@ function shuffle(array) {
   // Random title
 
   function titleQuestion(){
-    if(randomArrayFind.length > 0){
+    if(randomArrayFind.length > 0 && myTime !=0){
       signTitle.textContent = randomArrayFind[0].symbol_title;
-    }else{
+    }
+     if (randomArrayFind.length == 0 && myTime !=0){
       winnerr()
       document.querySelector(".win-sound").play();
     }
+    if(myTime == 0){
+      endGameFunc();
+    }
   }
 
-  function timerFunc (timeValue){
-    let myTime = Number(timeValue)*60;
+  let myTime = Number(selectTime.value)*60;
+  function timerFunc (){
     let checkFun = () => {
       let allTime =
       `${Math.floor(myTime / 60)}`.padStart(2, "0") +
@@ -76,7 +80,6 @@ function shuffle(array) {
         checkingTime ;
       }else{
         stopInterval();
-        endGameFunc();
       }
       timeCount.textContent = allTime;
     };
@@ -158,7 +161,7 @@ function shuffle(array) {
     document.querySelector(".end-game-sound").play();
     endGame.classList.remove("d-none");
     endGame.classList.add("d-block");
-    endGameImg.textContent = score;
+    endGamePoint.textContent = score;
     resetBtn.addEventListener("click", function(evt){
       evt.preventDefault();
       window.location.reload()
